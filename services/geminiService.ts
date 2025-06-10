@@ -2,14 +2,14 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import type { GeneratedReply, UserProfile, GeneratedQuoteComment } from '../types';
 
-const API_KEY = (window as any).GEMINI_API_KEY;
+const API_KEY = process.env.API_KEY;
 const MAX_AI_REPLY_LENGTH = 280; // Character limit for AI replies
 
 let ai: GoogleGenAI | null = null;
 if (API_KEY) {
   ai = new GoogleGenAI({ apiKey: API_KEY });
 } else {
-  console.warn("API_KEYがwindowオブジェクトに設定されていません。Netlifyの環境変数やindex.htmlのスクリプトを確認してください。Gemini APIの呼び出しは失敗します。");
+  console.warn("API_KEY 環境変数が設定されていません。アプリケーションのAPIキー設定を確認してください。Gemini APIの呼び出しは失敗します。");
 }
 
 const RARE_CHARACTERS = [
