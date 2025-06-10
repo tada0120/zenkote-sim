@@ -1,21 +1,12 @@
 {
-  "name": "new全肯定シミュレーったー",
-  "private": true,
-  "version": "0.0.0",
+  "name": "new-zenkoutei-simulator",
+  "version": "1.0.0",
+  "description": "A social media simulator where every post you make receives overwhelmingly positive and affirming replies, powered by Gemini. Experience a purely uplifting social feed!",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react-dom": "^19.1.0",
-    "react": "^19.1.0",
-    "@google/genai": "^1.4.0"
+    "build": "esbuild index.tsx --bundle --outfile=dist/app.js --format=esm --platform=browser --jsx=automatic --loader:.ts=tsx --external:react --external:react-dom --external:@google/genai --define:process.env.API_KEY=\"'$API_KEY'\" --define:process.env.NODE_ENV='\"production\"' --minify && mkdir -p dist && cp index.html metadata.json dist/ && sed -i 's|/index.tsx|/app.js|g' dist/index.html"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "typescript": "~5.7.2",
-    "vite": "^6.2.0"
+    "esbuild": "^0.20.2"
   }
 }
